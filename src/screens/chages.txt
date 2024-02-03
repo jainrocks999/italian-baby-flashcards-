@@ -1,0 +1,32 @@
+English column in not in tbl_items
+
+sound not commimg
+ {"ActualSound": "", "Category": "Food", "Image": "bellpepper.jpg", "LenguageText": "Pimentão", "Sound": "bell pepper.mp3", "Title": "Bell Pepper", "_id": 43}
+{"ActualSound": "act-polar bear.mp3", "Category": "Animal", "Image": "polarbear.jpg", "LenguageText": "Urso polar", "Sound": "polar bear.mp3", "Title": "Polar Bear", "_id": 130}
+{"ActualSound": "", "Category": "Animal", "Image": "seahorse.jpg", "LenguageText": "Cavalo marinho", "Sound": "sea horse.mp3", "Title": "Sea Horse", "_id": 137}
+{"ActualSound": "", "Category": "Alphabet", "Image": "a.jpg", "LenguageText": "A de avião", "Sound": "a for apple.mp3", "Title": "A", "_id": 306}
+
+
+ image 
+ {"ActualSound": "", "Category": "Food", "Image": "cherries", "LenguageText": "Cerejas", "Sound": "cherries.mp3", "Title": "Cherries", "_id": 6}*
+  {"ActualSound": "act-bird.mp3", "Category": "Animal", "Image": "Bird.jpg", "LenguageText": "Pássaro", "Sound": "bird.mp3", "Title": "Bird", "_id": 86}*
+  {"ActualSound": "", "Category": "Animal", "Image": "Nest.jpg", "LenguageText": "Ninho", "Sound": "nest.mp3", "Title": "Nest", "_id": 121}*
+  {"ActualSound": "", "Category": "Alphabet", "Image": "e.jpg", "LenguageText": "E de elefante", "Sound": "e for elephant.mp3", "Title": "E", "_id": 310}*
+  {"ActualSound": "", "Category": "Alphabet", "Image": "u.png", "LenguageText": "U de uva", "Sound": "u for umrella.mp3", "Title": "U", "_id": 326}*
+  {"ActualSound": "", "Category": "Alphabet", "Image": "w.png", "LenguageText": "W de wilson", "Sound": "x for xylophone.mp3", "Title": "W", "_id": 172}*
+  {"ActualSound": "", "Category": "Alphabet", "Image": "y.jpg", "LenguageText": "Y de yogurt", "Sound": "y for yogurt.mp3", "Title": "Y", "_id": 330}*
+  {"ActualSound": "", "Category": "Alphabet", "Image": "z.png", "LenguageText": "Z de zebra", "Sound": "z for zebra.mp3", "Title": "Z", "_id": 331}*
+  {"ActualSound": "", "Category": "Numbers", "Image": "nine ", "LenguageText": "", "Sound": "nine.mp3", "Title": "9", "_id": 340}*
+  {"ActualSound": "", "Category": "Colors", "Image": "biege.jpg", "LenguageText": "Bege", "Sound": "beige.mp3", "Title": "Beige", "_id": 30}*
+   {"ActualSound": "", "Category": "Shapes", "Image": "triangle ", "LenguageText": "Triângulo", "Sound": "triangle.mp3", "Title": "Triangle", "_id": 34}*----
+   {"ActualSound": "", "Category": "HomeItems", "Image": "plate.jpg", "LenguageText": "Travesseiro", "Sound": "pillow.mp3", "Title": "Pillow", "_id": 231}*
+   {"ActualSound": "act_log", "Category": "OutdoorItems", "Image": "log.jpg", "LenguageText": "Tronco", "Sound": "log.mp3", "Title": "Log", "_id": 390}*
+   {"ActualSound": "", "Category": "OutdoorItems", "Image": "tree ", "LenguageText": "Arvore", "Sound": "tree.mp3", "Title": "Tree", "_id": 402}
+   {"ActualSound": "", "Category": "OutdoorItems", "Image": "yoyo.jpg", "LenguageText": "Ioiô", "Sound": "yoyo.mp3", "Title": "Yoyo", "_id": 403}
+   {"ActualSound": "", "Category": "BodyParts", "Image": "Arm.jpg", "LenguageText": "Braço", "Sound": "arm.mp3", "Title": "Arm", "_id": 275}
+   {"ActualSound": "", "Category": "BodyParts", "Image": "bellyButton.jpg", "LenguageText": "Umbigo", "Sound": "belly button.mp3", "Title": "Belly Button", "_id": 277}
+   {"ActualSound": "", "Category": "BodyParts", "Image": "chin.jpg", "LenguageText": "Orelha", "Sound": "ear.mp3", "Title": "Ear", "_id": 280}
+    bird image
+    nest image
+    polar bear sound
+    act-polar bear.mp3
