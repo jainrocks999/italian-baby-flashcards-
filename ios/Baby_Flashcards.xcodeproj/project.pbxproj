@@ -519,7 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = MM8CWENXY2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Baby_Flashcards/Info.plist;
@@ -527,14 +527,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eflashapps.portugueseaf.--PRODUCT-NAME-rfc1034identifier-";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.eflashapps.portugueseaf;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.eflashapps.eflashitalian;
 				PRODUCT_NAME = Baby_Flashcards;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -552,21 +552,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = MM8CWENXY2;
 				INFOPLIST_FILE = Baby_Flashcards/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eflashapps.portugueseaf.--PRODUCT-NAME-rfc1034identifier-";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.eflashapps.portugueseaf;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.eflashapps.eflashitalian;
 				PRODUCT_NAME = Baby_Flashcards;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

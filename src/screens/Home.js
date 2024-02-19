@@ -55,38 +55,38 @@ const Home = () => {
   };
 
   return (
-    // <SafeAreaView style={{flex: 1, backgroundColor: '#73cbea'}}>
-    <ImageBackground
-      style={{flex: 1}}
-      source={require('../../Assets4/bgnewcategory.png')}>
-      <StatusBar backgroundColor="#73cbea" />
-      <Header
-        onPress2={() => setMute(!mute)}
-        mute={mute}
-        onPress={() => {
-          Navigation.navigate('setting', {pr: 'home'});
-        }}
-        home
-      />
-      <HorizontalList items={MyData} />
-      <View
-        style={{
-          position: 'relative',
-          width: '100%',
-          bottom: 0,
-
-          alignItems: 'center',
-        }}>
-        <BannerAd
-          unitId={Addsid.BANNER}
-          sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
-          requestOptions={{
-            requestNonPersonalizedAdsOnly: true,
+    <SafeAreaView style={{flex: 1, backgroundColor: '#73cbea'}}>
+      <ImageBackground
+        style={{flex: 1}}
+        source={require('../../Assets4/bgnewcategory.png')}>
+        <StatusBar backgroundColor="#73cbea" />
+        <Header
+          onPress2={() => setMute(!mute)}
+          mute={mute}
+          onPress={() => {
+            Navigation.navigate('setting', {pr: 'home'});
           }}
+          home
         />
-      </View>
-    </ImageBackground>
-    // </SafeAreaView>
+        <HorizontalList items={MyData} />
+        <View
+          style={{
+            position: 'relative',
+            width: '100%',
+            bottom: 0,
+
+            alignItems: 'center',
+          }}>
+          <BannerAd
+            unitId={Addsid.BANNER}
+            sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
+            requestOptions={{
+              requestNonPersonalizedAdsOnly: true,
+            }}
+          />
+        </View>
+      </ImageBackground>
+    </SafeAreaView>
   );
 };
 

@@ -12,4 +12,4 @@ const Root = () => {
 export default Root;
 
 const styles = StyleSheet.create({});
-//ca-app-pub-3339897183017333~5721016782
+

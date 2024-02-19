@@ -180,7 +180,7 @@ const SettingScreen = props => {
     <SafeAreaView style={{flex: 1, backgroundColor: '#73cbea'}}>
       <StatusBar backgroundColor="#73cbea" />
       <ImageBackground
-        resizeMode="cover"
+        resizeMode="stretch"
         style={{flex: 1}}
         source={require('../../Assets4/setting_screen.png')}>
         <Header onPress2={() => setMute(!mute)} mute={mute} />
