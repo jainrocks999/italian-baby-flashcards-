@@ -386,7 +386,6 @@ const styles = StyleSheet.create({
   imgContainer: {
     height: height,
     marginTop: '5%',
-    // marginLeft: 8,
   },
   btnContainer: {
     position: 'absolute',
