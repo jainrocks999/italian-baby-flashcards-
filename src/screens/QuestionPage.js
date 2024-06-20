@@ -41,8 +41,8 @@ const requestOption = {
   keywords: ['fashion', 'clothing'],
 };
 const QuestionPage = props => {
-  // const {hasPurchased} = useContext(IAPContext);
-  const hasPurchased = true;
+  const {hasPurchased} = useContext(IAPContext);
+  // const hasPurchased = true;
 
   const interstitial = InterstitialAd.createForAdRequest(authId, requestOption);
   const tablet = isTablet();
