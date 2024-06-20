@@ -9,7 +9,7 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import {height, width} from '../components/Diemenstions';
@@ -34,12 +34,16 @@ import {
 } from 'react-native-google-mobile-ads';
 import RNFS from 'react-native-fs';
 import {Addsid} from './ads';
+import {IAPContext} from '../Context';
 const authId = Addsid.Interstitial;
 const requestOption = {
   requestNonPersonalizedAdsOnly: true,
   keywords: ['fashion', 'clothing'],
 };
 const QuestionPage = props => {
+  // const {hasPurchased} = useContext(IAPContext);
+  const hasPurchased = true;
+
   const interstitial = InterstitialAd.createForAdRequest(authId, requestOption);
   const tablet = isTablet();
   const disapatch = useDispatch();
@@ -88,7 +92,7 @@ const QuestionPage = props => {
     setCount(count + 1);
 
     if (count > 8) {
-      setCount(0), showAdd();
+      setCount(0), !hasPurchased ? showAdd() : null;
     }
     let arr = [
       (track = {
@@ -242,7 +246,7 @@ const QuestionPage = props => {
           </View>
           <View
             style={{
-              marginTop: tablet ? '5%' : '-1%',
+              marginTop: tablet ? '5%' : hasPurchased ? '1%' : '2%',
               alignSelf: 'center',
               alignItems: 'center',
               paddingLeft: '2%',
@@ -288,23 +292,25 @@ const QuestionPage = props => {
             />
           </View>
         </View>
-        <View
-          style={{
-            bottom: 0,
+        {!hasPurchased && (
+          <View
+            style={{
+              bottom: 0,
 
-            alignItems: 'center',
+              alignItems: 'center',
 
-            borderWidth: 0,
-            backgroundColor: 'white',
-          }}>
-          <BannerAd
-            unitId={Addsid.BANNER}
-            sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
-            requestOptions={{
-              requestNonPersonalizedAdsOnly: true,
-            }}
-          />
-        </View>
+              borderWidth: 0,
+              backgroundColor: 'white',
+            }}>
+            <BannerAd
+              unitId={Addsid.BANNER}
+              sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
+              requestOptions={{
+                requestNonPersonalizedAdsOnly: true,
+              }}
+            />
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );

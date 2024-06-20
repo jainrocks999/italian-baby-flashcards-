@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import HorizontalList from '../components/HorizontalList';
 import Header from '../components/Header';
@@ -23,6 +23,8 @@ import {
 } from 'react-native-google-mobile-ads';
 import {Addsid} from './ads';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {IAPContext} from '../Context';
+import PurcahsdeModal from '../components/requestPurchase';
 const db = SQLite.openDatabase({
   name: 'eFlashItalian.db',
   createFromLocation: 1,
@@ -30,6 +32,9 @@ const db = SQLite.openDatabase({
 
 const Home = () => {
   const muted = useSelector(state => state.sound);
+  const {hasPurchased, visible, setVisible, requestPurchase, checkPurchases} =
+    useContext(IAPContext);
+
   const Navigation = useNavigation();
   const [mute, setMute] = useState(muted);
   useEffect(() => {
@@ -67,24 +72,36 @@ const Home = () => {
             Navigation.navigate('setting', {pr: 'home'});
           }}
           home
+          onPressPuchase={() => setVisible(true)}
+          hasPurchased={hasPurchased}
         />
-        <HorizontalList items={MyData} />
-        <View
-          style={{
-            position: 'relative',
-            width: '100%',
-            bottom: 0,
-
-            alignItems: 'center',
-          }}>
-          <BannerAd
-            unitId={Addsid.BANNER}
-            sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
-            requestOptions={{
-              requestNonPersonalizedAdsOnly: true,
-            }}
+        {!hasPurchased && (
+          <PurcahsdeModal
+            visible={visible}
+            onClose={value => setVisible(value)}
+            onPress={() => requestPurchase()}
+            onRestore={() => checkPurchases(true)}
           />
-        </View>
+        )}
+        <HorizontalList items={MyData} />
+        {!hasPurchased && (
+          <View
+            style={{
+              position: 'relative',
+              width: '100%',
+              bottom: 0,
+
+              alignItems: 'center',
+            }}>
+            <BannerAd
+              unitId={Addsid.BANNER}
+              sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
+              requestOptions={{
+                requestNonPersonalizedAdsOnly: true,
+              }}
+            />
+          </View>
+        )}
       </ImageBackground>
     </SafeAreaView>
   );

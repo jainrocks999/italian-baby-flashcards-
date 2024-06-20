@@ -12,7 +12,7 @@ import {
   StatusBar,
 } from 'react-native';
 import {height, width} from '../components/Diemenstions';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Switch from '../components/Switch';
 import {useDispatch, useSelector} from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
@@ -32,17 +32,15 @@ const db = SQLite.openDatabase({
   createFromLocation: 1,
 });
 import {isTablet} from 'react-native-device-info';
-import {
-  TestIds,
-  InterstitialAd,
-  AdEventType,
-  GAMBannerAd,
-  BannerAdSize,
-  BannerAd,
-} from 'react-native-google-mobile-ads';
+import {BannerAdSize, BannerAd} from 'react-native-google-mobile-ads';
 import {Addsid} from './ads';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {IAPContext} from '../Context';
+import PurcahsdeModal from '../components/requestPurchase';
 const SettingScreen = props => {
+  const {hasPurchased, visible, setVisible, requestPurchase, checkPurchases} =
+    useContext(IAPContext);
+
   const pr = props.route.params.pr;
   const muted = useSelector(state => state.sound);
   const canlable = useSelector(state => state.cancle);
@@ -183,17 +181,60 @@ const SettingScreen = props => {
         resizeMode="stretch"
         style={{flex: 1}}
         source={require('../../Assets4/setting_screen.png')}>
+        {!hasPurchased ? (
+          <PurcahsdeModal
+            onPress={async () => {
+              requestPurchase();
+              setVisible(false);
+            }}
+            onClose={value => {
+              setVisible(false);
+            }}
+            visible={visible}
+            onRestore={() => {
+              checkPurchases(true);
+            }}
+          />
+        ) : null}
         <Header onPress2={() => setMute(!mute)} mute={mute} />
         <ScrollView>
           <View
             style={[
               styles.settingContainer,
-              {marginTop: tablet ? '25%' : '37%'},
+              {marginTop: tablet ? '22%' : '30%'},
             ]}>
             <ImageBackground
               style={{flex: 1}}
               source={require('../../Assets4/settingpagebase.png')}>
-              <View style={{marginTop: tablet ? '7%' : '8%', marginLeft: '5%'}}>
+              {!hasPurchased ? (
+                <TouchableOpacity
+                  onPress={() => {
+                    setVisible(true);
+                  }}
+                  style={{
+                    height: hp(7.5),
+                    marginTop: '2%',
+                    width: '80%',
+                    alignSelf: 'center',
+                  }}>
+                  <Image
+                    style={{height: '100%', width: '100%'}}
+                    source={require('../../Assets4/upgrade.png')}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              ) : null}
+              <View
+                style={{
+                  marginTop: tablet
+                    ? hasPurchased
+                      ? '5%'
+                      : '-1%'
+                    : hasPurchased
+                    ? '10%'
+                    : null,
+                  marginLeft: '5%',
+                }}>
                 <Switch
                   text="Question mode"
                   style={styles.sw}
@@ -256,6 +297,7 @@ const SettingScreen = props => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               marginHorizontal: '10%',
+              marginTop: hasPurchased ? '8%' : 0,
             }}>
             <TouchableOpacity
               onPress={async () => {
@@ -289,15 +331,17 @@ const SettingScreen = props => {
             </TouchableOpacity>
           </View>
         </ScrollView>
-        <View style={{position: 'relative', alignItems: 'center', bottom: 0}}>
-          <BannerAd
-            unitId={Addsid.BANNER}
-            sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
-            requestOptions={{
-              requestNonPersonalizedAdsOnly: true,
-            }}
-          />
-        </View>
+        {!hasPurchased && (
+          <View style={{position: 'relative', alignItems: 'center', bottom: 0}}>
+            <BannerAd
+              unitId={Addsid.BANNER}
+              sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
+              requestOptions={{
+                requestNonPersonalizedAdsOnly: true,
+              }}
+            />
+          </View>
+        )}
       </ImageBackground>
     </SafeAreaView>
   );
@@ -308,7 +352,7 @@ const styles = StyleSheet.create({
   settingContainer: {
     borderWidth: 2,
     marginTop: '40%',
-    height: height / 2.1,
+    height: isTablet() ? height / 1.9 : height / 2,
     margin: '5%',
   },
   sw: {

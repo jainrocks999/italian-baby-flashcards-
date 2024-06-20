@@ -10,7 +10,7 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {height, width} from '../components/Diemenstions';
 import TrackPlayer from 'react-native-track-player';
@@ -24,15 +24,14 @@ import {
 } from 'react-native-responsive-screen';
 import {isTablet} from 'react-native-device-info';
 import {
-  TestIds,
   InterstitialAd,
   AdEventType,
-  GAMBannerAd,
   BannerAdSize,
   BannerAd,
 } from 'react-native-google-mobile-ads';
 import {Addsid} from './ads';
 import RNFS from 'react-native-fs';
+import {IAPContext} from '../Context';
 
 const adUnit = Addsid.Interstitial;
 const requestOption = {
@@ -44,6 +43,8 @@ const path = Platform.select({
   ios: RNFS.MainBundlePath + '/files/',
 });
 const Detials = props => {
+  const {hasPurchased} = useContext(IAPContext);
+
   const tablet = isTablet();
   const disapatch = useDispatch();
   const backSound = useSelector(state => state.backsound);
@@ -164,7 +165,7 @@ const Detials = props => {
     } else if (count < 0) {
       navigation.goBack();
     } else {
-      getAdd();
+      !hasPurchased ? getAdd() : null;
       navigation.dispatch(StackActions.replace('next'));
     }
     setImages(Imagess);
@@ -249,12 +250,12 @@ const Detials = props => {
                   Title.english == '' ? {fontSize: wp(7)} : null,
                 ]}>
                 {console.log(Title)}
-                {setting.English ? Title.japanese : ''}
+                {setting.English == 1 ? Title.japanese : ''}
               </Text>
               {Title.english != '' ? (
                 <Text
                   style={[styles.Titel, {fontSize: wp(4), fontWeight: '500'}]}>
-                  {setting.English ? Title.english : ''}
+                  {setting.English == 1 ? Title.english : ''}
                 </Text>
               ) : null}
             </View>
@@ -281,7 +282,7 @@ const Detials = props => {
             {Images && (
               <Image
                 style={{
-                  height: height / 1.6,
+                  height: hasPurchased ? height / 1.3 : height / 1.5,
                   width: '100%',
                   alignItems: 'center',
                 }}
@@ -294,6 +295,7 @@ const Detials = props => {
             style={[
               styles.btnContainer,
               setting.Swipe != 1 ? {flexDirection: 'row'} : null,
+              {bottom: hasPurchased ? '3%' : '1%'},
             ]}>
             {setting.Swipe == 0 && (
               <TouchableOpacity
@@ -348,15 +350,17 @@ const Detials = props => {
             )}
           </View>
         </View>
-        <View style={{bottom: 0, width: '100%', alignItems: 'center'}}>
-          <BannerAd
-            unitId={Addsid.BANNER}
-            sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
-            requestOptions={{
-              requestNonPersonalizedAdsOnly: true,
-            }}
-          />
-        </View>
+        {!hasPurchased && (
+          <View style={{bottom: 0, width: '100%', alignItems: 'center'}}>
+            <BannerAd
+              unitId={Addsid.BANNER}
+              sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
+              requestOptions={{
+                requestNonPersonalizedAdsOnly: true,
+              }}
+            />
+          </View>
+        )}
       </GestureRecognizer>
     </SafeAreaView>
   );
@@ -385,7 +389,7 @@ const styles = StyleSheet.create({
   },
   imgContainer: {
     height: height,
-    marginTop: '5%',
+    marginTop: '1%',
   },
   btnContainer: {
     position: 'absolute',
