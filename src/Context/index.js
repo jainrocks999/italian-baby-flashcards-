@@ -3,6 +3,7 @@ import * as RNIap from 'react-native-iap';
 import {constants} from '../constansts';
 import {Alert, Platform} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import errorMsg from './errorMsg';
 
 export const IAPContext = createContext();
 
@@ -134,7 +135,7 @@ const IAPProvider = ({children}) => {
       };
       const pucrs = await RNIap.requestPurchase(skus);
     } catch (error) {
-      Alert.alert('Message', error.message);
+      Alert.alert('Message', errorMsg(error.code));
       console.log('this siss error', error);
     }
   };

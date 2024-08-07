@@ -246,7 +246,7 @@ const QuestionPage = props => {
           </View>
           <View
             style={{
-              marginTop: tablet ? '5%' : hasPurchased ? '1%' : '2%',
+              marginTop: tablet ? '5%' : hasPurchased ? '1%' : '-2%',
               alignSelf: 'center',
               alignItems: 'center',
               paddingLeft: '2%',
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
     bottom: '1%',
   },
   mobileView: {
-    height: hp(40),
+    height: hp(37),
     width: '46%',
     marginHorizontal: '1.5%',
     marginVertical: '1.5%',
